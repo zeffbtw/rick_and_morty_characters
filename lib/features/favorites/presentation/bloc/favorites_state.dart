@@ -13,9 +13,23 @@ final class FavoritesLoading extends FavoritesState {}
 
 final class FavoritesLoaded extends FavoritesState {
   final List<CharacterEntity> favorites;
+  final FavoritesSortType sortType;
 
-  const FavoritesLoaded(this.favorites);
+  const FavoritesLoaded({
+    required this.favorites,
+    this.sortType = FavoritesSortType.none,
+  });
+
+  FavoritesLoaded copyWith({
+    List<CharacterEntity>? favorites,
+    FavoritesSortType? sortType,
+  }) {
+    return FavoritesLoaded(
+      favorites: favorites ?? this.favorites,
+      sortType: sortType ?? this.sortType,
+    );
+  }
 
   @override
-  List<Object> get props => [favorites];
+  List<Object> get props => [favorites, sortType];
 }

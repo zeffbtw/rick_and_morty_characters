@@ -17,3 +17,12 @@ final class FavoritesToggleRequest extends FavoritesEvent {
   @override
   List<Object> get props => [character];
 }
+
+final class FavoritesSortRequest extends FavoritesEvent {
+  final FavoritesSortType type;
+
+  const FavoritesSortRequest(this.type);
+
+  @override
+  List<Object> get props => [type];
+}
