@@ -15,11 +15,14 @@ class MainScreen extends StatelessWidget {
       builder: (context, state) {
         state is MainInitial;
         return Scaffold(
-          body: IndexedStack(index: state.tabIndex, children: pages),
+          body: SafeArea(
+            minimum: const EdgeInsets.symmetric(horizontal: 24),
+            child: IndexedStack(index: state.tabIndex, children: pages),
+          ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: state.tabIndex,
             onTap: (index) => context.read<MainBloc>().add(MainTabChanged(index)),
-            items: [
+            items: const [
               BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Characters'),
               BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites'),
             ],

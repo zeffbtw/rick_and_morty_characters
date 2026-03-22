@@ -3,14 +3,14 @@ import 'package:rick_and_morty_characters/core/constants/api_constants.dart';
 import 'package:rick_and_morty_characters/core/error/exceptions.dart';
 import 'package:rick_and_morty_characters/features/characters/data/models/characters_model.dart';
 
-abstract class CharacterRemoteDatasource {
+abstract class CharacterRemoteDataSource {
   Future<CharactersModel> getCharacters({int? page});
 }
 
-class CharacterRemoteDatasourceImpl implements CharacterRemoteDatasource {
+final class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
   final Dio _dio;
 
-  const CharacterRemoteDatasourceImpl(this._dio);
+  const CharacterRemoteDataSourceImpl(this._dio);
 
   @override
   Future<CharactersModel> getCharacters({int? page}) async {

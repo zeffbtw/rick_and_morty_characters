@@ -1,13 +1,7 @@
-class CharactersInfoEntity {
+final class CharactersInfoEntity {
   final int count;
   final int pages;
-  final String next;
-  final String prev;
+  final String? next;
 
-  CharactersInfoEntity({
-    required this.count,
-    required this.pages,
-    required this.next,
-    required this.prev,
-  });
+  CharactersInfoEntity({required this.count, required this.pages, this.next});
 }
