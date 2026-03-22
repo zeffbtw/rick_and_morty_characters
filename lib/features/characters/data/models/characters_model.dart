@@ -18,6 +18,9 @@ final class CharactersModel {
   }
 
   CharactersEntity toEntity() {
-    return CharactersEntity(info: info.toEntity(), results: results);
+    return CharactersEntity(
+      info: info.toEntity(),
+      results: results.map((value) => value.toEntity()).toList(),
+    );
   }
 }

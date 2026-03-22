@@ -6,3 +6,14 @@ sealed class FavoritesEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+final class FavoritesLoadRequest extends FavoritesEvent {}
+
+final class FavoritesToggleRequest extends FavoritesEvent {
+  final CharacterEntity character;
+
+  const FavoritesToggleRequest(this.character);
+
+  @override
+  List<Object> get props => [character];
+}

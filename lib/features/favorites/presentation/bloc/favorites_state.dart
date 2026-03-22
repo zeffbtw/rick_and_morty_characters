@@ -8,3 +8,14 @@ sealed class FavoritesState extends Equatable {
 }
 
 final class FavoritesInitial extends FavoritesState {}
+
+final class FavoritesLoading extends FavoritesState {}
+
+final class FavoritesLoaded extends FavoritesState {
+  final List<CharacterEntity> favorites;
+
+  const FavoritesLoaded(this.favorites);
+
+  @override
+  List<Object> get props => [favorites];
+}

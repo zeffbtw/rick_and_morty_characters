@@ -1,3 +1,4 @@
+import 'package:rick_and_morty_characters/core/shared/data/models/character_model.dart';
 import 'package:rick_and_morty_characters/features/characters/data/models/characters_model.dart';
 
 final class LocalStorageKey<T> {
@@ -7,5 +8,5 @@ final class LocalStorageKey<T> {
 
 abstract final class LocalStorageKeys {
   static const characters = LocalStorageKey<CharactersModel>('characters');
-  static const favorites = LocalStorageKey<int>('favorites');
+  static const favorites = LocalStorageKey<CharacterModel>('favorites');
 }

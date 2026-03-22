@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_characters/core/shared/domain/entities/character_entity.dart';
@@ -16,10 +15,9 @@ final class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
       super(CharactersInitial()) {
     on<CharactersLoadRequest>(_charactersLoad);
     on<CharactersLoadMoreRequest>(_charactersLoadMore);
-    on<CharactersFavoriteTap>(_favoriteTap);
   }
 
-  FutureOr<void> _charactersLoad(
+  Future<void> _charactersLoad(
     CharactersLoadRequest event,
     Emitter<CharactersState> emit,
   ) async {
@@ -35,7 +33,7 @@ final class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     );
   }
 
-  FutureOr<void> _charactersLoadMore(
+  Future<void> _charactersLoadMore(
     CharactersLoadMoreRequest event,
     Emitter<CharactersState> emit,
   ) async {
@@ -63,9 +61,4 @@ final class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
       emit(currentState.copyWith(isLoadingMore: false));
     }
   }
-
-  FutureOr<void> _favoriteTap(
-    CharactersFavoriteTap event,
-    Emitter<CharactersState> emit,
-  ) {}
 }

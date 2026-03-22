@@ -14,12 +14,3 @@ final class CharactersLoadRequest extends CharactersEvent {
 final class CharactersLoadMoreRequest extends CharactersEvent {
   const CharactersLoadMoreRequest();
 }
-
-final class CharactersFavoriteTap extends CharactersEvent {
-  final CharacterEntity character;
-
-  const CharactersFavoriteTap({required this.character});
-
-  @override
-  List<Object> get props => [character];
-}

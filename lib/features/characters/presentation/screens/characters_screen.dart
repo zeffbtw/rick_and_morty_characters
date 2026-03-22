@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty_characters/core/shared/domain/entities/character_entity.dart';
 import 'package:rick_and_morty_characters/features/characters/presentation/bloc/characters_bloc.dart';
-import 'package:rick_and_morty_characters/features/characters/presentation/widgets/character_card.dart';
+import 'package:rick_and_morty_characters/core/shared/widgets/character_card.dart';
+import 'package:rick_and_morty_characters/features/favorites/presentation/bloc/favorites_bloc.dart';
 
 class CharactersScreen extends StatefulWidget {
   const CharactersScreen({super.key});
@@ -59,11 +61,24 @@ class _CharactersScreenState extends State<CharactersScreen> {
 
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12),
-                child: CharacterCard(
-                  character: character,
-                  onFavoriteTap: () {
-                    context.read<CharactersBloc>().add(
-                      CharactersFavoriteTap(character: character),
+                child: BlocSelector<FavoritesBloc, FavoritesState, List<CharacterEntity>>(
+                  selector: (state) {
+                    if (state is FavoritesLoaded) {
+                      return state.favorites;
+                    }
+                    return [];
+                  },
+                  builder: (context, favorites) {
+                    final isFavorite = favorites.contains(character);
+
+                    return CharacterCard(
+                      character: character,
+                      isFavorite: isFavorite,
+                      onFavoriteTap: () {
+                        context.read<FavoritesBloc>().add(
+                          FavoritesToggleRequest(character),
+                        );
+                      },
                     );
                   },
                 ),

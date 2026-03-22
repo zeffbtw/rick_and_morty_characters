@@ -3,16 +3,16 @@ import 'package:rick_and_morty_characters/core/storage/local_storage_service.dar
 import 'package:rick_and_morty_characters/features/characters/data/models/characters_info_model.dart';
 import 'package:rick_and_morty_characters/features/characters/data/models/characters_model.dart';
 
-abstract class CharacterLocalDataSource {
+abstract class CharactersLocalDataSource {
   CharactersModel getCharacters({int? page});
 
   Future<void> saveCharacters({required CharactersModel value, int? page});
 }
 
-final class CharacterLocalDataSourceImpl implements CharacterLocalDataSource {
+final class CharactersLocalDataSourceImpl implements CharactersLocalDataSource {
   final LocalStorageService _localStorageService;
 
-  CharacterLocalDataSourceImpl({required LocalStorageService localStorageService})
+  CharactersLocalDataSourceImpl({required LocalStorageService localStorageService})
     : _localStorageService = localStorageService;
 
   @override

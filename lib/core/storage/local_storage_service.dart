@@ -1,4 +1,5 @@
 import 'package:hive_ce_flutter/hive_flutter.dart';
+import 'package:rick_and_morty_characters/core/shared/data/models/character_model.dart';
 import 'package:rick_and_morty_characters/core/storage/local_storage_keys.dart';
 import 'package:rick_and_morty_characters/features/characters/data/models/characters_model.dart';
 import 'package:rick_and_morty_characters/hive/hive_registrar.g.dart';
@@ -36,7 +37,7 @@ final class LocalStorageServiceImpl implements LocalStorageService {
 
   Future<void> _openBoxes() async {
     await Hive.openBox<CharactersModel>(LocalStorageKeys.characters.name);
-    await Hive.openBox<int>(LocalStorageKeys.favorites.name);
+    await Hive.openBox<CharacterModel>(LocalStorageKeys.favorites.name);
   }
 
   Box<T> _getBox<T>(LocalStorageKey<T> box) {
