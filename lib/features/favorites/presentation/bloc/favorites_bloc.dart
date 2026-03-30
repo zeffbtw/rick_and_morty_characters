@@ -25,15 +25,15 @@ final class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     on<FavoritesSortRequest>(_favoritesSort);
   }
 
-  FutureOr<void> _favoritesSort(
+  Future<void> _favoritesSort(
     FavoritesSortRequest event,
     Emitter<FavoritesState> emit,
-  ) {
+  ) async {
     final currentState = state;
 
     if (currentState is FavoritesLoaded) {
       emit(currentState.copyWith(sortType: event.type));
-      _loadAndSortFavorites(emit);
+      await _loadAndSortFavorites(emit);
     }
   }
 
@@ -46,7 +46,7 @@ final class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     if (currentState is! FavoritesLoaded) return;
 
     await _toggleFsavoriteUseCase(event.character);
-    _loadAndSortFavorites(emit);
+    await _loadAndSortFavorites(emit);
   }
 
   Future<void> _favoritesLoad(
@@ -54,7 +54,7 @@ final class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     Emitter<FavoritesState> emit,
   ) async {
     emit(FavoritesLoading());
-    _loadAndSortFavorites(emit);
+    await _loadAndSortFavorites(emit);
   }
 
   Future<void> _loadAndSortFavorites(Emitter<FavoritesState> emit) async {
